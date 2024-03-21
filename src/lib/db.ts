@@ -4,19 +4,11 @@ import "server-only";
 
 // Déclaration d'une variable globale pour le client Prisma
 declare global {
-  // eslint-disable-next-line no-var, no-unused-vars
-  var cachedPrisma: PrismaClient;
+  var prisma: PrismaClient | undefined;
 }
 // Déclaration de la variable prisma pour interagir avec la base de données
-export let prisma: PrismaClient;
+export const db = globalThis.prisma || new PrismaClient();
 
 // Si l'environnement est en production, une nouvelle instance du client Prisma est créée
 // Sinon, si une instance globale du client Prisma n'existe pas encore
-if (process.env.NODE_ENV === "production") {
-  prisma = new PrismaClient();
-} else {
-  if (!global.cachedPrisma) {
-    global.cachedPrisma = new PrismaClient();
-  }
-  prisma = global.cachedPrisma;
-}
+if (process.env.NODE_ENV === "production") globalThis.prisma = db;
