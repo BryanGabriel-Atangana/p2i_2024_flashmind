@@ -20,10 +20,16 @@ import { FormError } from "../FormError";
 import { FormSuccess } from "../FormSuccess";
 import { login } from "@/actions/login";
 import { signup } from "@/actions/signup";
+import { useSearchParams } from "next/navigation";
 
 type Props = {};
 
 const LoginForm = (props: Props) => {
+  const searchParams = useSearchParams();
+  const urlError =
+    searchParams.get("error") === "OAuthAccountNotLinked"
+      ? "Email déjà utiliser avec Google ou Github"
+      : "";
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
@@ -56,10 +62,10 @@ const LoginForm = (props: Props) => {
             loginForm.reset();
             setError(data.error);
           }
-          if (data?.success) {
-            loginForm.reset();
-            setSuccess(data.success);
-          }
+          // if (data?.success) {
+          //   loginForm.reset();
+          //   setSuccess(data.success);
+          // }
         })
         .catch(() => setError("Something went wrong"));
     });
