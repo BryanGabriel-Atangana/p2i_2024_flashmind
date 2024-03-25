@@ -20,3 +20,12 @@ export const SignupSchema = z.object({
     message: "Mot de passe valide : 3  caractères minimum",
   }),
 });
+
+export const MapSchema = z.object({
+  title: z.string().min(1).max(50, {
+    message: "Devrait contenir au moins un caractères",
+  }),
+  color: z.string().min(7).max(7, {
+    message: "Le code couleur devrait être en format HEX",
+  }),
+});

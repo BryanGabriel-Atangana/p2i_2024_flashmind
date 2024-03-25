@@ -1,6 +1,5 @@
 // Importation du client Prisma
 import { PrismaClient } from "@prisma/client";
-import "server-only";
 
 // Déclaration d'une variable globale pour le client Prisma
 declare global {

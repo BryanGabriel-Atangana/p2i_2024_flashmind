@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 interface ColorGridProps {
   selectedColor: string;
@@ -31,26 +31,21 @@ const ColorGrid: React.FC<ColorGridProps> = ({
   };
 
   return (
-    <div className="px-4 ">
-      <h2>Select a color:</h2>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+    <div className="mt-4">
+      <h2 className="mb-2">Choisissez une couleur:</h2>
+      <div className="flex flex-wrap">
         {colorGrid.map((color, index) => (
           <div
             key={index}
-            style={{
-              backgroundColor: color,
-              width: "40px",
-              height: "40px",
-              borderRadius: "50%",
-              margin: "5px",
-              cursor: "pointer",
-              border: color === selectedColor ? "2px solid slate" : "none",
-            }}
+            className={`w-10 h-10 rounded-full m-1 cursor-pointer transition-all transform hover:scale-110 ${
+              color === selectedColor ? "border-[0.3rem] border-slate-200" : ""
+            }`}
+            style={{ backgroundColor: color }}
             onClick={() => handleColorClick(color)}
           ></div>
         ))}
       </div>
-      <p>Selected Color: {selectedColor}</p>
+      <p className="mt-2">Code HEX: {selectedColor}</p>
     </div>
   );
 };

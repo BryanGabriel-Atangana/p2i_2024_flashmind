@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-
+import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Drawer,
@@ -12,50 +12,39 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import { useForm } from "react-hook-form";
+import { MapSchema } from "@/schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { addMap } from "@/actions/addMap";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import ColorGrid from "./ColorGrid";
 
-const data = [
-  {
-    goal: 400,
-  },
-  {
-    goal: 300,
-  },
-  {
-    goal: 200,
-  },
-  {
-    goal: 300,
-  },
-  {
-    goal: 200,
-  },
-  {
-    goal: 278,
-  },
-  {
-    goal: 189,
-  },
-  {
-    goal: 239,
-  },
-  {
-    goal: 300,
-  },
-  {
-    goal: 200,
-  },
-  {
-    goal: 278,
-  },
-  {
-    goal: 189,
-  },
-  {
-    goal: 349,
-  },
-];
+export function AddMap() {
+  const [selectedColor, setSelectedColor] = React.useState<string>("#FF5733");
 
-export function AddMapCard() {
+  const handleSelectedColor = (color: string) => {
+    setSelectedColor(color);
+    addMapForm.setValue("color", color);
+  };
+
+  const addMapForm = useForm<z.infer<typeof MapSchema>>({
+    resolver: zodResolver(MapSchema),
+    defaultValues: {
+      title: "",
+      color: selectedColor,
+    },
+  });
+
+  const onSubmitMap = (values: z.infer<typeof MapSchema>) => {
+    addMap(values).then((data) => {
+      if (data?.error) {
+        alert("Error adding map");
+        addMapForm.reset();
+      }
+    });
+  };
+
   return (
     <Drawer>
       <DrawerTrigger asChild className="w-full">
@@ -88,13 +77,41 @@ export function AddMapCard() {
               Tips 💡 : Les maps sont très importantes pour une organisation
               éfficace des cartes
             </DrawerDescription>
-          </DrawerHeader>
-          <DrawerFooter>
-            <Button>Créer</Button>
+            <Form {...addMapForm}>
+              <form
+                onSubmit={addMapForm.handleSubmit(onSubmitMap)}
+                className="w-full"
+              >
+                <FormField
+                  control={addMapForm.control}
+                  name="title"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          placeholder="example : Math"
+                          type="text"
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+                <ColorGrid
+                  selectedColor={selectedColor}
+                  setSelectedColor={(color) => handleSelectedColor(color)}
+                />
+
+                <Button type="submit" className="w-full">
+                  Créer
+                </Button>
+              </form>
+            </Form>
             <DrawerClose asChild>
               <Button variant="outline">Annuler</Button>
             </DrawerClose>
-          </DrawerFooter>
+          </DrawerHeader>
+          <DrawerFooter></DrawerFooter>
         </div>
       </DrawerContent>
     </Drawer>

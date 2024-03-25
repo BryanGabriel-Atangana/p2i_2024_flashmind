@@ -4,7 +4,9 @@ import { auth, signOut } from "../../../../auth";
 import FlowChart from "@/components/site/flow/FlowChart";
 import SignoutButton from "@/components/site/general/SignoutButton";
 import { BreadcrumbTitle } from "@/components/site/general/Breadcrumb";
-import { AddMapCard } from "@/components/site/general/AddMapCard";
+import { AddMap } from "@/components/site/general/AddMapCard";
+import { db } from "@/lib/db";
+import MapCard from "@/components/site/general/MapCard";
 
 type Props = {};
 
@@ -57,10 +59,8 @@ const page = async (props: Props) => {
           <h1 className=" text-[1.5rem]">
             <BreadcrumbTitle />
           </h1>
-          <div className="w-full grid grid-flow-col grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 py-4">
-            <div className="col-span-1">
-              <AddMapCard />
-            </div>
+          <div className="">
+            <MapCard />
           </div>
         </div>
       </div>
