@@ -1,3 +1,7 @@
+// 
+// * Schéma de la base de données
+// * Ce fichier définit les modèles de données utilisés dans la base de données avec Prisma
+// 
 generator client {
   provider = "prisma-client-js"
 }
@@ -44,6 +48,15 @@ model Map {
   color  String
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Card   Card[]
+}
+
+model Card {
+  id       String @id @default(cuid())
+  question String
+  answer   String
+  mapId    String
+  map      Map    @relation(fields: [mapId], references: [id], onDelete: Cascade)
 }
 
 enum UserRole {

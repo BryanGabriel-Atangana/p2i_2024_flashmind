@@ -1,3 +1,9 @@
+/**
+ * Configuration de l'authentification
+ * Ce fichier contient la configuration des fournisseurs d'authentification pour NextAuth
+ * @module auth.config
+ */
+
 import GitHub from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
@@ -5,6 +11,11 @@ import type { NextAuthConfig } from "next-auth";
 import { LoginSchema } from "@/schema";
 import { getUserByEmail } from "@/data/user";
 import bcrypt from "bcryptjs";
+
+/**
+ * Configuration des fournisseurs d'authentification
+ * @type {NextAuthConfig}
+ */
 
 export default {
   providers: [

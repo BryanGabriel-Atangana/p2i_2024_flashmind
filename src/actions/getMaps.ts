@@ -1,7 +1,18 @@
+/**
+ * Action de récupération des maps de l'utilisateur
+ * Ce fichier contient la fonction pour récupérer les maps associées à l'utilisateur actuellement authentifié
+ * @module action/getMap
+ */
+
 "use server";
 import { db } from "@/lib/db";
 import { auth } from "../../auth";
 
+/**
+ * Fonction de récupération des maps de l'utilisateur
+ * @function
+ * @returns {Object} - Les maps de l'utilisateur ou un message d'erreur si l'opération échoue
+ */
 export const getMaps = async () => {
   const session = await auth();
   if (!session) {
