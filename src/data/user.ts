@@ -1,3 +1,9 @@
+/**
+ * Fonctions de récupération d'utilisateur
+ * Ce fichier contient des fonctions pour récupérer un utilisateur par son adresse e-mail ou son identifiant
+ * @module data/user
+ */
+
 import { db } from "@/lib/db";
 
 export const getUserByEmail = async (email: string) => {
