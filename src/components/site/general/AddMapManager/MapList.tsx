@@ -14,13 +14,15 @@ const MapList = () => {
   }, [fetchMaps]);
 
   return (
-    <div>
-      <div>
+    <div className="pt-2">
+      <div className="flex flex-wrap">
+        <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 p-1">
+          <AddMap />
+        </div>
         {maps.map((map) => (
           <MapCard key={map.id} map={map} />
         ))}
       </div>
-      <AddMap />
     </div>
   );
 };

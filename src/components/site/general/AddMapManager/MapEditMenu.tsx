@@ -10,12 +10,13 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { CiEdit } from "react-icons/ci";
 
-export function AddMapDefaultButton() {
+export function EditMap() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Edit Map</Button>
+        <CiEdit size={20} />
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -33,9 +34,14 @@ export function AddMapDefaultButton() {
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="username" className="text-right">
-              Username
+              Couleur
             </Label>
-            <Input id="username" value="@peduarte" className="col-span-3" />
+            <Input
+              id="color"
+              value="color"
+              placeholder="exemple : #000000"
+              className="col-span-3"
+            />
           </div>
         </div>
         <DialogFooter>

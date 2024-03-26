@@ -1,4 +1,6 @@
 import React from "react";
+import { EditMap } from "./MapEditMenu";
+import { MapDropdownMenu } from "./MapDropdownMenu";
 
 interface Map {
   id: string;
@@ -11,7 +13,6 @@ interface MapCardProps {
 }
 
 const MapCard: React.FC<MapCardProps> = ({ map }) => {
-  // Render the map card using the 'map' prop
   return (
     <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 p-1">
       <div className="h-[4rem] rounded-md bg-[#f2f2f2]">
@@ -25,8 +26,7 @@ const MapCard: React.FC<MapCardProps> = ({ map }) => {
               <span className="text-[#131135]">{map.title}</span>
             </div>
             <div>
-              {/* Assuming MapMenu component is defined elsewhere */}
-              Menu
+              <MapDropdownMenu />
             </div>
           </div>
           <div className="text-[#333333] text-[0.8rem] px-2">X cartes</div>
