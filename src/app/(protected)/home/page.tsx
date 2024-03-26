@@ -4,9 +4,10 @@ import { auth, signOut } from "../../../../auth";
 import FlowChart from "@/components/site/flow/FlowChart";
 import SignoutButton from "@/components/site/general/SignoutButton";
 import { BreadcrumbTitle } from "@/components/site/general/Breadcrumb";
-import { AddMap } from "@/components/site/general/AddMapCard";
+import { AddMap } from "@/components/site/general/AddMapManager/AddMapCard";
 import { db } from "@/lib/db";
-import MapCard from "@/components/site/general/MapCard";
+import MapCard from "@/components/site/general/AddMapManager/MapCard";
+import MapList from "@/components/site/general/AddMapManager/MapList";
 
 type Props = {};
 
@@ -60,7 +61,7 @@ const page = async (props: Props) => {
             <BreadcrumbTitle />
           </h1>
           <div className="">
-            <MapCard />
+            <MapList />
           </div>
         </div>
       </div>

@@ -19,9 +19,10 @@ import { addMap } from "@/actions/addMap";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import ColorGrid from "./ColorGrid";
+import { useMapStore } from "@/store/maps";
 
 export function AddMap() {
-  const [selectedColor, setSelectedColor] = React.useState<string>("#FF5733");
+  const { selectedColor, setSelectedColor, fetchMaps } = useMapStore();
 
   const handleSelectedColor = (color: string) => {
     setSelectedColor(color);
@@ -37,11 +38,9 @@ export function AddMap() {
   });
 
   const onSubmitMap = (values: z.infer<typeof MapSchema>) => {
-    addMap(values).then((data) => {
-      if (data?.error) {
-        alert("Error adding map");
-        addMapForm.reset();
-      }
+    addMap(values).then(() => {
+      fetchMaps();
+      addMapForm.reset();
     });
   };
 
@@ -97,14 +96,12 @@ export function AddMap() {
                     </FormItem>
                   )}
                 />
-                <ColorGrid
-                  selectedColor={selectedColor}
-                  setSelectedColor={(color) => handleSelectedColor(color)}
-                />
-
-                <Button type="submit" className="w-full">
-                  Créer
-                </Button>
+                <ColorGrid />
+                <DrawerClose asChild>
+                  <Button type="submit" className="w-full">
+                    Créer
+                  </Button>
+                </DrawerClose>
               </form>
             </Form>
             <DrawerClose asChild>

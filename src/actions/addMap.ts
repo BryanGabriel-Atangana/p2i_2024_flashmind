@@ -24,14 +24,16 @@ export const addMap = async (values: z.infer<typeof MapSchema>) => {
   }
   try {
     const userId: string | undefined = session?.user.id;
-    await db.map.create({
+    const createdMap = await db.map.create({
       data: {
         title: validatedFields.title,
         color: validatedFields.color,
         userId: userId!,
       },
     });
-  } catch {
+    return createdMap;
+  } catch (e) {
+    console.error(e);
     return { error: "Une erreure est survenue" };
   }
 };
