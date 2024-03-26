@@ -1,7 +1,9 @@
 import { useMapStore } from "@/store/maps";
 import React from "react";
 
-interface ColorGridProps {}
+interface ColorGridProps {
+  handleSelectedColor: (color: string) => void; // Define the prop type for handleSelectedColor
+}
 
 const colorGrid: string[] = [
   "#FF5733",
@@ -20,11 +22,11 @@ const colorGrid: string[] = [
   "#74991C",
 ];
 
-const ColorGrid: React.FC<ColorGridProps> = () => {
+const ColorGrid: React.FC<ColorGridProps> = ({ handleSelectedColor }) => {
   const { selectedColor, setSelectedColor } = useMapStore();
 
   const handleColorClick = (color: string) => {
-    setSelectedColor(color);
+    handleSelectedColor(color); // Call the handleSelectedColor function when a color is clicked
   };
 
   return (

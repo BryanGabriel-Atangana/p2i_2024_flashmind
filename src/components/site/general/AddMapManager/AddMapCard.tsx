@@ -96,7 +96,8 @@ export function AddMap() {
                     </FormItem>
                   )}
                 />
-                <ColorGrid />
+                <ColorGrid handleSelectedColor={handleSelectedColor} />
+
                 <DrawerClose asChild>
                   <Button type="submit" className="w-full">
                     Créer
