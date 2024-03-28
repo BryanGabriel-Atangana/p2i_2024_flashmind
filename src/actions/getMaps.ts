@@ -19,7 +19,7 @@ export const getMaps = async () => {
     return { error: "Error" };
   }
   try {
-    const userId: string = session!.user!.id!; // Asserting non-null
+    const userId: string = session!.user!.id!;
     const maps = await db.map.findMany({
       where: {
         userId: userId,

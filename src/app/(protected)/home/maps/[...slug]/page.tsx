@@ -51,11 +51,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </div>
         </div>
         {/* Doccuments */}
-        <div className="">
+        <div className="w-full">
           <h1 className=" text-[1.5rem]">
-            <BreadcrumbTitle />
+            <BreadcrumbTitle currentMapId={params.slug[0]} />
           </h1>
-          <div className="">My Page : {session ? params.slug : ""}</div>
           <FlashcardsDisplay currentMapId={params.slug[0]} />
           <CardList currentMapId={params.slug[0]} />
         </div>

@@ -22,3 +22,20 @@ export const getCards = async (map: Map) => {
     return { error: err };
   }
 };
+
+export const getCardsCount = async (map: Map) => {
+  const session = await auth();
+  if (!session) {
+    return { error: "Aucune session active!" };
+  }
+  try {
+    const cardsCount = await db.card.count({
+      where: {
+        mapId: map.id,
+      },
+    });
+    return { count: cardsCount };
+  } catch (err) {
+    return { error: err };
+  }
+};

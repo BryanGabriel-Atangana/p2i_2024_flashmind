@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { EditMap } from "./MapEditMenu";
 import { MapDropdownMenu } from "./MapDropdownMenu";
 import Link from "next/link";
+import { getCardsCount } from "@/actions/getCards";
 
 interface Map {
   id: string;
@@ -14,6 +15,27 @@ interface MapCardProps {
 }
 
 const MapCard: React.FC<MapCardProps> = ({ map }) => {
+  const [cardCount, setCardCount] = useState<number | undefined>(undefined);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { count, error } = await getCardsCount(map);
+        if (error) {
+          throw new Error();
+        }
+        setCardCount(count);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching card count:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [map]);
+
   return (
     <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 p-1 cursor-pointer">
       <Link href={`home/maps/${map.id}`}>
@@ -31,7 +53,13 @@ const MapCard: React.FC<MapCardProps> = ({ map }) => {
                 <MapDropdownMenu />
               </div>
             </div>
-            <div className="text-[#333333] text-[0.8rem] pl-8">X cartes</div>
+            <div className="text-[#333333] text-[0.8rem] pl-8">
+              {loading
+                ? "Loading..."
+                : cardCount === undefined
+                ? "Error"
+                : `${cardCount} cartes`}
+            </div>
           </div>
         </div>
       </Link>

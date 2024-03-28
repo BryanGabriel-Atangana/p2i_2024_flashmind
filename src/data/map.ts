@@ -12,3 +12,12 @@ export const getCurrentMap = async (id: string) => {
     return { error: "Couldn't find the map" };
   }
 };
+
+export const getNumberOfCards = async (id: string) => {
+  try {
+    const numberOfCards = await db.card.count({ where: { mapId: id } });
+    return numberOfCards;
+  } catch {
+    return;
+  }
+};

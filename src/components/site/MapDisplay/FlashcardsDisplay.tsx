@@ -73,7 +73,7 @@ export default function FlashcardsDisplay({ currentMapId }: Props) {
   }));
 
   return (
-    <div className="w-full flex flex-col justify-center items-center">
+    <div className="w-[100%] flex flex-col justify-center items-center">
       <FlashcardArray
         cards={cards}
         frontCardStyle={{ backgroundColor: "#6525b2" }}
