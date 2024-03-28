@@ -5,6 +5,7 @@ import SignoutButton from "@/components/site/general/SignoutButton";
 import Navigation from "@/components/site/general/Navigation/Navigation";
 import FlowChart from "@/components/site/MapDisplay/FlowChart";
 import FlashcardsDisplay from "@/components/site/MapDisplay/FlashcardsDisplay";
+import CardList from "@/components/site/MapDisplay/CardList";
 type Props = {};
 
 export default async function Page({ params }: { params: { slug: string } }) {
@@ -56,6 +57,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </h1>
           <div className="">My Page : {session ? params.slug : ""}</div>
           <FlashcardsDisplay currentMapId={params.slug[0]} />
+          <CardList currentMapId={params.slug[0]} />
         </div>
       </div>
     </div>

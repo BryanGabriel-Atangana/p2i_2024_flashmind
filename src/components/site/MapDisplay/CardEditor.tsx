@@ -22,11 +22,17 @@ export default function CardEditor() {
   }, [quill, setAnswer]);
 
   if (Quill && !quill) {
-    // For execute this line only once.
-    const MagicUrl = require("quill-magic-url").default; // Install with 'yarn add quill-magic-url'
+    const MagicUrl = require("quill-magic-url").default;
     Quill.register("modules/magicUrl", MagicUrl);
   }
 
+  function imageHandler() {
+    var range = quill?.getSelection();
+    var value = prompt("please copy paste the image url here.");
+    if (value) {
+      quill?.insertEmbed(range!.index, "image", value, Quill.sources.USER);
+    }
+  }
   return (
     <div className="w-full h-[200px] md:h-[320px] lg:h-[350px ]">
       <div ref={quillRef} />
