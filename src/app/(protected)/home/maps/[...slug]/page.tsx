@@ -55,7 +55,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             <BreadcrumbTitle />
           </h1>
           <div className="">My Page : {session ? params.slug : ""}</div>
-          <FlashcardsDisplay currentMapId={params.slug} />
+          <FlashcardsDisplay currentMapId={params.slug[0]} />
         </div>
       </div>
     </div>

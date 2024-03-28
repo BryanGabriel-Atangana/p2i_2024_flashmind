@@ -36,9 +36,11 @@ export const MapSchema = z.object({
 });
 
 export const CardSchema = z.object({
-  question: z.string().max(100, {
-    message: "100 caractères max",
+  question: z.string().min(1, {
+    message: "La question doit contenir au moins un caractère",
   }),
-  answer: z.string().min(20),
+  answer: z
+    .string()
+    .min(1, { message: "La réponse doit contenir au moins un caractère" }),
   mapId: z.string(),
 });

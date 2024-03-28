@@ -28,7 +28,7 @@ export default function CardEditor() {
   }
 
   return (
-    <div style={{ width: "100%", height: "325px" }}>
+    <div className="w-full h-[200px] md:h-[320px] lg:h-[350px ]">
       <div ref={quillRef} />
     </div>
   );

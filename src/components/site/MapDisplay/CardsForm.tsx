@@ -24,25 +24,31 @@ import { getCurrentMap } from "@/data/map";
 type Props = {
   currentMapId: string;
 };
-export function CardsForm({ currentMapId }: Props) {
-  const { answer, fetchCards } = useCardStore();
 
+export function CardsForm({ currentMapId }: Props) {
+  const { fetchCards, answer } = useCardStore();
+
+  console.log(currentMapId, answer);
   const addCardForm = useForm<z.infer<typeof CardSchema>>({
     resolver: zodResolver(CardSchema),
     defaultValues: {
+      mapId: currentMapId,
       question: "",
       answer: answer,
-      mapId: currentMapId,
     },
   });
 
-  const onSubmitCard = (values: z.infer<typeof CardSchema>) => {
-    console.log("Form submitted !!!");
-    addCard(values).then(() => {
+  const onSubmitCard = async () => {
+    const values = addCardForm.getValues();
+    values.answer = answer;
+    try {
+      await addCard(values);
       const map: any = getCurrentMap(currentMapId);
-      fetchCards(map);
+      await fetchCards(map);
       addCardForm.reset();
-    });
+    } catch (error) {
+      console.error("Error submitting card:", error);
+    }
   };
 
   return (
@@ -56,40 +62,41 @@ export function CardsForm({ currentMapId }: Props) {
           <DialogDescription>Remplissez le form ci-dessous</DialogDescription>
         </DialogHeader>
         <Form {...addCardForm}>
-          <form onSubmit={addCardForm.handleSubmit(onSubmitCard)}>
-            <div className="grid gap-4 py-4">
-              <div className="flex flex-col">
-                <Label htmlFor="question" className="pb-[0.5rem]">
-                  Question
-                </Label>
-                <FormField
-                  control={addCardForm.control}
-                  name="question"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          type="text"
-                          className="col-span-3"
-                          placeholder="exemple : quelle est la capitale du Cameroun ?"
-                          required
-                        />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div className="flex items-center pb-[2rem]">
+          <div className="grid gap-4 py-4">
+            <div className="flex flex-col">
+              <Label htmlFor="question" className="pb-[0.5rem]">
+                Question
+              </Label>
+              <FormField
+                control={addCardForm.control}
+                name="question"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        type="text"
+                        className="col-span-3"
+                        placeholder="exemple : quelle est la capitale du Cameroun ?"
+                        required
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <div className="pb-[2rem] pt-[1rem]">
+                <Label className="pb-[0.5rem]">Réponse</Label>
                 <CardEditor />
               </div>
             </div>
-            <DialogFooter className="w-full pt-3rem  ">
-              <Button type="submit" className="w-full">
+          </div>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button onClick={onSubmitCard} className="w-full">
                 Créer
               </Button>
-            </DialogFooter>
-          </form>
+            </DialogClose>
+          </DialogFooter>
         </Form>
       </DialogContent>
     </Dialog>
