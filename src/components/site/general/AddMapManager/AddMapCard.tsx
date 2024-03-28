@@ -68,11 +68,11 @@ export function AddMap() {
           <span className="text-[#3E3C5B] text-[0.8rem]">nouvelle map</span>
         </Button>
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent className="">
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
             <DrawerTitle>Nouvelle map</DrawerTitle>
-            <DrawerDescription>
+            <DrawerDescription className="py-3">
               Tips 💡 : Les maps sont très importantes pour une organisation
               éfficace des cartes
             </DrawerDescription>
@@ -109,7 +109,6 @@ export function AddMap() {
               <Button variant="outline">Annuler</Button>
             </DrawerClose>
           </DrawerHeader>
-          <DrawerFooter></DrawerFooter>
         </div>
       </DrawerContent>
     </Drawer>

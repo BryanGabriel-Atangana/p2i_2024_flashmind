@@ -14,7 +14,7 @@ export function BreadcrumbTitle() {
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink href="/home" className="text-[1.2rem]">
-            Home
+            Mes Maps
           </BreadcrumbLink>
         </BreadcrumbItem>
         {/* <BreadcrumbSeparator />

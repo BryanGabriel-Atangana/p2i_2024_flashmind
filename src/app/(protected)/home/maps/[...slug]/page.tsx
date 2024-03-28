@@ -1,18 +1,15 @@
-import { auth, signOut } from "../../../../auth";
-import SignoutButton from "@/components/site/general/SignoutButton";
+import { checkAuth } from "@/checkAuth";
+import { auth, signOut } from "../../../../../../auth";
 import { BreadcrumbTitle } from "@/components/site/general/Breadcrumb";
-import MapList from "@/components/site/general/AddMapManager/MapList";
+import SignoutButton from "@/components/site/general/SignoutButton";
 import Navigation from "@/components/site/general/Navigation/Navigation";
-
+import FlowChart from "@/components/site/MapDisplay/FlowChart";
+import FlashcardsDisplay from "@/components/site/MapDisplay/FlashcardsDisplay";
 type Props = {};
 
-const PageDelay = async (ms: number) => {
-  await new Promise((resolve) => setTimeout(() => resolve(true), ms));
-};
+export default async function Page({ params }: { params: { slug: string } }) {
+  const session = await checkAuth();
 
-const page = async (props: Props) => {
-  const session = await auth();
-  // await PageDelay(1000);
   return (
     <div className="grid grid-cols-8 w-full h-screen">
       {/* {JSON.stringify(session)} */}
@@ -57,13 +54,10 @@ const page = async (props: Props) => {
           <h1 className=" text-[1.5rem]">
             <BreadcrumbTitle />
           </h1>
-          <div className="">
-            <MapList />
-          </div>
+          <div className="">My Page : {session ? params.slug : ""}</div>
+          <FlashcardsDisplay currentMapId={params.slug} />
         </div>
       </div>
     </div>
   );
-};
-
-export default page;
+}

@@ -39,5 +39,6 @@ export const CardSchema = z.object({
   question: z.string().max(100, {
     message: "100 caractères max",
   }),
-  answer: z.string().max(4096),
+  answer: z.string().min(20),
+  mapId: z.string(),
 });

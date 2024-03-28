@@ -11,7 +11,7 @@ import * as z from "zod";
 import { auth } from "../../auth";
 
 /**
- * Fonction d'ajout de carte
+ * Fonction d'ajout de cartes mentales
  * @function
  * @param {Object} values - Informations de la map à ajouter
  * @returns {Object} - Résultat de l'opération (succès ou erreur)

@@ -10,7 +10,7 @@ export const publicRoutes = ["/"];
  * Ces routes redirigeront les utilisateurs connectés vers la page home
  * @type {string[]}
  */
-export const authRoutes = ["/auth/login", "/auth/error"];
+export const authRoutes = ["/auth/login", "/auth/error", "/home/maps"];
 
 /**
  * Le préfixe pour les routes d'authentification de l'API

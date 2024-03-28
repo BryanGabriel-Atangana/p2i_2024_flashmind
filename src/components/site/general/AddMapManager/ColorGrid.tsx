@@ -37,14 +37,16 @@ const ColorGrid: React.FC<ColorGridProps> = ({ handleSelectedColor }) => {
           <div
             key={index}
             className={`w-10 h-10 rounded-full m-1 cursor-pointer transition-all transform hover:scale-110 ${
-              color === selectedColor ? "border-[0.3rem] border-slate-200" : ""
+              color === selectedColor ? "border-[0.3rem] border-slate-300" : ""
             }`}
             style={{ backgroundColor: color }}
             onClick={() => handleColorClick(color)}
           ></div>
         ))}
       </div>
-      <p className="mt-2">Code HEX: {selectedColor}</p>
+      <div className="py-3">
+        <p className="">Code HEX: {selectedColor}</p>
+      </div>
     </div>
   );
 };

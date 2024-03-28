@@ -14,7 +14,7 @@ export function MapDropdownMenu() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div className="cursor-pointer">
-          <CgMenuHotdog size={20} />
+          <CgMenuHotdog size={20} className="text-[#a9a9a9]" />
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">

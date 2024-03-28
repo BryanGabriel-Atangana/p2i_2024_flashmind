@@ -17,7 +17,7 @@ const initialNodes = [
 ];
 const initialEdges = [{ id: "e1-2", source: "1", target: "2" }];
 
-export default function App() {
+export default function FlowChart() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
@@ -27,7 +27,7 @@ export default function App() {
   );
 
   return (
-    <div style={{ width: "100vw", height: "100vh" }}>
+    <div className="h-[90%] w-full border-2">
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -36,7 +36,7 @@ export default function App() {
         onConnect={onConnect}
       >
         <Controls />
-        <MiniMap />
+        {/* <MiniMap /> */}
         <Background gap={12} size={1} />
       </ReactFlow>
     </div>
