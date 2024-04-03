@@ -34,14 +34,13 @@ export default async function Index() {
               </h1>
             </Link>
             <div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent my-8" />
-            <LandingPageAlert title="1 - Sujet">
-              Entrer le sujet du quiz
+            <LandingPageAlert title="1 - Une Idée">
+              Organisez bien vos cartes memos
             </LandingPageAlert>
-            <LandingPageAlert title="2 - Questions">
-              Entrez le nombre de question que vous souhaitez répondre dans le
-              quiz
+            <LandingPageAlert title="2 - Une Map">
+              Créez de cartes sublime
             </LandingPageAlert>
-            <LandingPageAlert title="3 - QUIZ">
+            <LandingPageAlert title="3 - Un quiz">
               Ta da ! vous avez un quiz
             </LandingPageAlert>
           </div>

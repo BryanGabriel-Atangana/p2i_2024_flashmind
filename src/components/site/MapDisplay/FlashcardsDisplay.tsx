@@ -60,13 +60,13 @@ export default function FlashcardsDisplay({ currentMapId }: Props) {
   const cards = filteredCards.map((card) => ({
     id: parseInt(card.id),
     frontHTML: (
-      <div className="w-full h-full flex flex-col justify-center items-center text-[1.3rem] text-white">
+      <div className="w-full h-full flex flex-col justify-center items-center text-[1.3rem] text-[#262626]">
         {card.question}
       </div>
     ),
     backHTML: (
       <div
-        className="w-full h-full flex flex-col justify-center items-center text-[1.3rem] text-white"
+        className="w-full h-full flex flex-col  justify-center items-center text-[1.3rem] text-[#262626]"
         dangerouslySetInnerHTML={{ __html: parseAnswer(card.answer) }}
       ></div>
     ),
@@ -76,8 +76,8 @@ export default function FlashcardsDisplay({ currentMapId }: Props) {
     <div className="w-[100%] flex flex-col justify-center items-center">
       <FlashcardArray
         cards={cards}
-        frontCardStyle={{ backgroundColor: "#6525b2" }}
-        backCardStyle={{ backgroundColor: "#6525b2" }}
+        frontCardStyle={{ backgroundColor: "#FCFCFC" }}
+        backCardStyle={{ backgroundColor: "#FCFCFC" }}
       />
       <div>
         <CardsForm currentMapId={currentMapId} />
