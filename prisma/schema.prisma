@@ -1,13 +1,17 @@
+//Models de la base de données
+
 generator client {
   provider = "prisma-client-js"
 }
 
+// Connection à la base de données postgreSQL sur supabase 
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
+//Model utilisateur
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -20,6 +24,7 @@ model User {
   Map           Map[]
 }
 
+//Model de compte utilisateur via fournisseur
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -38,6 +43,7 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
+//Model cartes mentales
 model Map {
   id     String @id @default(cuid())
   title  String
@@ -47,6 +53,7 @@ model Map {
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+//Model cartes mémoires
 model Card {
   id       String @id @default(cuid())
   question String

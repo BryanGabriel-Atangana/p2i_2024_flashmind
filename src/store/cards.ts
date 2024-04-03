@@ -24,6 +24,11 @@ type CardStore = {
   cardList: (values: Card) => Promise<void>;
 };
 
+/**
+ * Crée le store pour les cartes.
+ * @param {Function} set - Fonction de mise à jour interne de Zustand.
+ * @returns {CardStore} - Le store pour les cartes.
+ */
 export const useCardStore = create<CardStore>((set) => ({
   answer: "",
   setAnswer: (answer: string) => set({ answer: answer }),

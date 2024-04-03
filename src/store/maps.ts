@@ -17,6 +17,11 @@ type MapStore = {
   mapList: (title: string, color: string) => Promise<void>;
 };
 
+/**
+ * Crée le store pour les cartes mentales.
+ * @param {Function} set - Fonction de mise à jour interne de Zustand.
+ * @returns {MapStore} - Le store pour les cartes mentales.
+ */
 export const useMapStore = create<MapStore>((set) => ({
   maps: [],
   selectedColor: "#FF5733",
