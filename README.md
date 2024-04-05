@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# FLASHMIND : Projet Informatique Individuel
 
-## Getting Started
+## Introduction
 
-First, run the development server:
+L'idée principale de ce projet était de créer une version simplifiée d'une application de révision utilisant des flashcards, semblable à Quizlet. Cette idée a évolué vers une application permettant de créer et d'organiser des flashcards dans des cartes mentales.
+Pour rappel, les flashcards ou cartes mémoires sont de petites cartes de révision/mémorisation qui permettent d'apprendre rapidement et efficacement un grand nombre d'informations courtes. Le principe est simple : sur chaque carte, on écrit une question ou un mot au recto, sa réponse au verso. Ensuite, on mémorise les cartes en faisant une sorte de quiz. Les cartes mentales (mind maps) quant à elles sont des graphiques représentant des idées, des tâches, des mots, des concepts qui sont liés entre eux autour d'un sujet central.
+L’idée était donc de combiner ces deux méthodes de mémorisation pour catalyser la mémorisation lors des révisions.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+![alt text](image.png)
+
+## Procédure d'installation
+
+1. Cloner le projet Flashmind
+
+```
+git clone https://github.com/BryanGabriel-Atangana/p2i_2024_flashmind.git
+npm i
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Créer un fichier .env à la racine
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+touch .env
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+3. Créer une base de données Supabase
 
-## Learn More
+- Se connecter sur https://supabase.com/
+- Cliquer sur "new project"
+  ![alt text](image-1.png)
+- Remplir les champs et copier le mot de pase
+  ![alt text](image-2.png)
+- Coller dans votre fichier .env et cliquez sur "create new project".
 
-To learn more about Next.js, take a look at the following resources:
+```
+MOT_DE_PASSE_SUPABASE = [Votre Mot de Passe]
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-Lorque le projet est créé, cliquer sur "connect" puis allez sur l'onglet "ORM", sélectionnez "Prisma"
+![alt text](image-3.png)
+![alt text](image-4.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Copier les informations qui s'affichent (DATABASE_URL et DIRECT_URL) et collez les dans le fichier .env
+- Remplacer [YOUR-PASSWORD] par [Votre Mot de Passe]
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+npx prisma
+npx prisma init
+npx prisma migrate dev --name init
+```
