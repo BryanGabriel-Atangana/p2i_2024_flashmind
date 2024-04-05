@@ -41,10 +41,20 @@ MOT_DE_PASSE_SUPABASE = [Votre Mot de Passe]
 ![alt text](image-4.png)
 
 - Copier les informations qui s'affichent (DATABASE_URL et DIRECT_URL) et collez les dans le fichier .env
-- Remplacer [YOUR-PASSWORD] par [Votre Mot de Passe]
+- Remplacez [YOUR-PASSWORD] par [Votre Mot de Passe]
+
+Exécutez les commande ci-dessous
 
 ```
 npx prisma
 npx prisma init
 npx prisma migrate dev --name init
+```
+
+4 . Créer un mot de passe NEXT AUTH
+
+- Coller cette ligne dans votre fichier .env
+
+```
+NEXTAUTH_SECRET = [ENTRER UN MOT DE PASS]
 ```
