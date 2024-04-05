@@ -58,3 +58,29 @@ npx prisma migrate dev --name init
 ```
 NEXTAUTH_SECRET = [ENTRER UN MOT DE PASS]
 ```
+
+5. Informations d'authentification GOOGLE
+
+- Aller sur la page https://console.cloud.google.com/apis/
+- Cliquer sur "CRÉER DES IDENTIFIANTS" puis "ID client OAuth"
+  ![alt text](image-5.png)
+  ![alt text](image-6.png)
+  ![alt text](image-7.png)
+  ![alt text](image-8.png)
+
+copier "ID client" et "Code secret du client"
+
+Coller ces informations dans votre fichier .env
+
+```
+GOOGLE_CLIENT_ID = [votre GOOGLE_CLIENT_ID]
+GOOGLE_CLIENT_SECRET = [votre GOOGLE_CLIENT_SECRET]
+```
+
+Lancer le projet
+
+```
+npm run dev
+```
+
+Tout est bon !!!
